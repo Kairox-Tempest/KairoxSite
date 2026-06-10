@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kairox Systems — Tempest</title>
+<title>Kairox Systems · Tempest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root{
     --sky:#070b12;
@@ -23,10 +26,11 @@
     --body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,monospace;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{
+    scroll-behavior:smooth;color-scheme:dark;
+    -webkit-text-size-adjust:100%;text-size-adjust:100%;
+  }
   body{
     font-family:var(--body);
     color:var(--ink);
@@ -36,7 +40,6 @@
     overflow-x:hidden;
   }
 
-  /* the page is one continuous descent: sky -> boundary -> deep */
   .descent{
     background:linear-gradient(180deg,
       var(--sky) 0%,
@@ -90,17 +93,10 @@
   }
   .lede b{color:var(--ink);font-weight:600}
 
-  /* the horizon: the page's signature motif */
   .horizon{
     margin-top:64px;position:relative;height:1px;
     background:linear-gradient(90deg,transparent,var(--signal) 12%,var(--signal) 88%,transparent);
     opacity:.7;
-  }
-  .horizon::after{
-    content:"SURFACE — 0 m";
-    position:absolute;right:0;top:10px;
-    font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
-    color:var(--faint);text-transform:uppercase;
   }
   .horizon::before{
     content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;
@@ -136,7 +132,6 @@
   .card p{color:var(--muted);font-size:1.04rem;max-width:54ch;line-height:1.62}
   .card p b{color:var(--ink);font-weight:600}
 
-  /* stat row inside cards */
   .stats{
     display:flex;flex-wrap:wrap;gap:38px;margin-top:30px;
   }
@@ -150,7 +145,6 @@
     color:var(--faint);text-transform:uppercase;margin-top:9px;max-width:20ch;
   }
 
-  /* operator / mission chips */
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
   .chip{
     font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;
@@ -159,49 +153,10 @@
   }
   .chip span{color:var(--signal)}
 
-  /* market bar */
-  .mbar{margin-top:30px;max-width:480px}
-  .mbar .track{
-    height:9px;border-radius:2px;overflow:hidden;display:flex;
-    border:1px solid var(--card-edge);
-  }
-  .mbar .seg{height:100%}
-  .mbar .legend{
-    display:flex;justify-content:space-between;margin-top:12px;
-    font-family:var(--mono);font-size:.66rem;color:var(--faint);
-    letter-spacing:.04em;
-  }
-  .mbar .legend .beach{color:var(--signal)}
-
   /* ---------- closing ask ---------- */
   .ask{
     text-align:center;padding:96px 0 30px;position:relative;
   }
-  .ask .eyebrow{justify-content:center}
-  .ask .eyebrow::before{display:none}
-  .ask h2{
-    font-family:var(--display);font-weight:600;
-    font-size:clamp(1.8rem,4.4vw,3rem);letter-spacing:-.02em;
-    line-height:1.08;max-width:18ch;margin:0 auto 28px;
-  }
-  .ask h2 em{color:var(--signal);font-style:normal}
-  .ladder{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:0;
-    margin:38px auto 44px;max-width:680px;
-  }
-  .rung{
-    flex:1;min-width:120px;padding:16px 8px;position:relative;
-    font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;
-    color:var(--muted);
-  }
-  .rung.now{color:var(--signal)}
-  .rung::after{
-    content:"▸";position:absolute;right:-4px;top:50%;transform:translateY(-50%);
-    color:var(--faint);font-size:.7rem;
-  }
-  .rung:last-child::after{display:none}
-  .rung small{display:block;color:var(--faint);font-size:.62rem;margin-top:5px;letter-spacing:.1em}
-
   .cta{
     display:inline-block;font-family:var(--display);font-weight:600;
     font-size:.92rem;letter-spacing:.04em;
@@ -210,6 +165,15 @@
     transition:transform .15s ease,box-shadow .15s ease;
   }
   .cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px var(--signal-dim)}
+  .cta-row{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+  .cta-ghost{
+    display:inline-block;font-family:var(--display);font-weight:600;
+    font-size:.92rem;letter-spacing:.04em;
+    color:var(--ink);border:1px solid var(--card-edge);
+    padding:14px 33px;border-radius:2px;text-decoration:none;
+    transition:border-color .15s ease,color .15s ease;
+  }
+  .cta-ghost:hover{border-color:var(--signal);color:var(--signal)}
   .ctasub{
     margin-top:18px;font-family:var(--mono);font-size:.68rem;
     color:var(--faint);letter-spacing:.08em;text-transform:uppercase;
@@ -224,7 +188,6 @@
   }
   footer .sig{color:var(--muted)}
 
-  /* reveal on scroll */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){
@@ -234,12 +197,18 @@
 
   @media(max-width:720px){
     .wrap{padding:0 22px}
+    .bar{flex-wrap:wrap;row-gap:4px}
+    .hero{padding:64px 0 52px}
+    .horizon{margin-top:44px}
     .card{grid-template-columns:1fr;gap:18px;padding:42px 0}
     .depthtag .num{font-size:1.7rem}
     .stats{gap:26px}
-    .rung::after{display:none}
-    .rung{min-width:46%}
+    .ask{padding:72px 0 24px}
     footer{flex-direction:column;align-items:flex-start}
+  }
+  @media(max-width:480px){
+    .cta-row{flex-direction:column}
+    .cta,.cta-ghost{width:100%;text-align:center}
   }
 </style>
 </head>
@@ -252,51 +221,43 @@
     <div class="barmeta">Tempest · Group 1 UAS/UUV</div>
   </div>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="eyebrow">Air–sea transition technology</div>
     <h1>One asset.<span class="dive">Two domains.</span></h1>
-    <p class="lede">Tempest flies like a plane, then dives and navigates underwater like a submarine — on a <b>single pressure-rated airframe</b>. The mission that needed two vehicles and a coordination layer now needs one.</p>
+    <p class="lede">Tempest flies like a plane, then dives and navigates underwater like a submarine, on a <b>single pressure-rated airframe</b>. The mission that needed two vehicles and a coordination layer now needs one.</p>
     <div class="horizon"></div>
   </header>
 
-  <!-- CARDS -->
   <section class="stack">
 
-    <!-- 1 — THE GAP -->
     <article class="card reveal">
       <div class="depthtag"><span class="num">01</span>The gap</div>
       <div>
-        <h2>The Indo-Pacific is going unmanned. Nothing fielded crosses both domains.</h2>
-        <p>The INDOPACOM "Hellscape" calls for expendable autonomy across every domain in contested water. As threats push fleets past the First Island Chain, <b>the undersea picture degrades exactly when it matters most</b> — and no platform in service moves seamlessly between air and sea to close it.</p>
-        <div class="stats">
-          <div class="stat"><div class="v">2027</div><div class="k">Pentagon-assessed Taiwan timeline</div></div>
-          <div class="stat"><div class="v"><em>Zero</em></div><div class="k">Fielded amphibious incumbents</div></div>
-        </div>
+        <h2>The Indo-Pacific is going unmanned. The undersea picture is the hardest to hold.</h2>
+        <p>U.S. Indo-Pacific Command is fielding expendable autonomous systems across every domain of contested water. As operations push past the First Island Chain, <b>the undersea picture degrades exactly when it matters most</b>. Holding it demands persistent, attritable sensing that can reach denied water and operate below the surface.</p>
       </div>
     </article>
 
-    <!-- 2 — OPERATIONAL VALUE -->
     <article class="card reveal">
       <div class="depthtag"><span class="num">02</span>What it does</div>
       <div>
-        <h2>Deploy, transit, submerge, and surface — without ever changing platforms.</h2>
-        <p>Tempest penetrates A2/AD-denied zones by air, enters the water under control, runs submerged ISR to depth, then surfaces to relay over RF. <b>One operator, one asset, no mid-mission handoff</b> between an aerial drone and an undersea vehicle that were never built to talk to each other.</p>
+        <h2>Air to water and back. One platform, end to end.</h2>
+        <p>Tempest launches vertically, covers distance at fixed-wing cruise speed, submerges under control, traverses below the surface, then surfaces and returns to flight. <b>One operator, one asset, no mid-mission handoff</b> and no multi-vehicle coordination.</p>
         <div class="chips">
-          <div class="chip"><span>▸</span> Aerial transit</div>
-          <div class="chip"><span>▸</span> Controlled water entry</div>
-          <div class="chip"><span>▸</span> Submerged ISR to 20 m</div>
-          <div class="chip"><span>▸</span> Surface RF relay</div>
+          <div class="chip"><span>▸</span> VTOL launch</div>
+          <div class="chip"><span>▸</span> Fixed-wing cruise</div>
+          <div class="chip"><span>▸</span> Controlled submersion</div>
+          <div class="chip"><span>▸</span> Underwater traversal</div>
+          <div class="chip"><span>▸</span> Surface and return to flight</div>
         </div>
       </div>
     </article>
 
-    <!-- 3 — OPERATOR FIT -->
     <article class="card reveal">
       <div class="depthtag"><span class="num">03</span>Who uses it</div>
       <div>
         <h2>Built for the operators who own the littoral fight.</h2>
-        <p>The mission set maps directly onto how expeditionary and special-operations units already work the near-shore: a repositionable sensor picket one day, a loitering undersea munition or one-way strike asset the next, a rapid amphibious search-and-rescue tool when it's needed. <b>Operators are already committed to support prototype testing.</b></p>
+        <p>The mission set maps directly onto how expeditionary and special-operations units already work the near-shore: a repositionable sensor picket one day, a loitering undersea munition or one-way strike asset the next, a rapid amphibious search-and-rescue tool when it's needed.</p>
         <div class="chips">
           <div class="chip">Naval Special Warfare / MARSOC</div>
           <div class="chip">Expeditionary surface &amp; submarine</div>
@@ -305,25 +266,11 @@
       </div>
     </article>
 
-    <!-- 4 — MARKET SIGNAL -->
     <article class="card reveal">
       <div class="depthtag"><span class="num">04</span>Market signal</div>
       <div>
         <h2>The first standalone DoD autonomy budget just opened the window.</h2>
-        <p>FY2026 is the first year the Pentagon carries a dedicated autonomy line — a structural shift in acquisition, not a one-time spike. Inside a $13.4B total, the <b>undersea slice is the beachhead</b>: an underserved segment with no small or medium amphibious solution competing for it.</p>
-        <div class="mbar">
-          <div class="track">
-            <div class="seg" style="width:71%;background:#16323a"></div>
-            <div class="seg" style="width:13%;background:#1d4d52"></div>
-            <div class="seg" style="width:9%;background:#246b6b"></div>
-            <div class="seg" style="width:5%;background:var(--signal)"></div>
-            <div class="seg" style="width:2%;background:#2c4a52"></div>
-          </div>
-          <div class="legend">
-            <span>Aerial UAV $9.4B</span>
-            <span class="beach">◆ Undersea UUV $734M</span>
-          </div>
-        </div>
+        <p>FY2026 is the first year the Pentagon carries a dedicated autonomy line, a structural shift in acquisition rather than a one-time spike. Inside a $13.4B total, the <b>undersea slice is the beachhead</b>.</p>
         <div class="stats">
           <div class="stat"><div class="v"><em>$734M</em></div><div class="k">Serviceable beachhead — FY2026 Navy UUV</div></div>
           <div class="stat"><div class="v">+70%</div><div class="k">Navy unmanned YoY · $3.1B → $5.3B</div></div>
@@ -331,34 +278,21 @@
       </div>
     </article>
 
-    <!-- 5 — WHY KAIROX / TRACTION -->
     <article class="card reveal">
       <div class="depthtag"><span class="num">05</span>Why now</div>
       <div>
-        <h2>A white-space position, validated before the first flight.</h2>
-        <p>No existing platform combines VTOL, fixed-wing range, subsurface cruise, and an <b>attritable ~$10K unit cost</b> — meaningful against the combined cost of separate air and undersea vehicles, not against a single cheaper drone. The position is already drawing real signal.</p>
-        <div class="stats">
-          <div class="stat"><div class="v"><em>~$10K</em></div><div class="k">Target unit cost — designed for attrition</div></div>
-          <div class="stat"><div class="v">Secured</div><div class="k">Non-dilutive funding · QLab Summer Sprint</div></div>
-          <div class="stat"><div class="v">Q3 '26</div><div class="k">Air/water transition demonstrated in the field</div></div>
-        </div>
+        <h2>Unmanned systems are proliferating on both sides of the surface.</h2>
+        <p>Small unmanned aircraft have reshaped how forces find, fix, and strike. Undersea vehicles are following the same proliferation curve. <b>The littoral is where those two trends converge</b>, and operating there demands an asset that can cross the surface on demand.</p>
       </div>
     </article>
 
   </section>
 
-  <!-- ASK -->
   <section class="ask reveal">
-    <div class="eyebrow">The ask</div>
-    <h2>Fund the first flight. The acquisition window is <em>open now</em>.</h2>
-    <div class="ladder">
-      <div class="rung now">Pre-Seed<small>NOW</small></div>
-      <div class="rung">SBIR I + LOIs<small>2026</small></div>
-      <div class="rung">SBIR II + OTA<small>2027</small></div>
-      <div class="rung">Series A<small>2028</small></div>
-      <div class="rung">Program of Record<small>2028+</small></div>
+    <div class="cta-row">
+      <a class="cta" href="mailto:info@kairoxsys.com?subject=Request%20the%20Tempest%20brief">Request the brief</a>
+      <a class="cta-ghost" href="https://www.linkedin.com/company/kairox-systems/" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
-    <a class="cta" href="mailto:hello@kairoxsys.com">Request the brief</a>
     <div class="ctasub">For authorized distribution only</div>
   </section>
 
